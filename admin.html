@@ -234,10 +234,10 @@ function renderTable(){
 
   let rows = filtered.map(a => `
     <tr>
-      <td>${fmtDateBR(a.appointment_date)}</td>
-      <td>${a.appointment_time}</td>
+      <td>${fmtDateBR(a.created_at)}</td>
       <td>${escapeHtml(a.responsible_name)}</td>
-      <td>${a.child_name ? escapeHtml(a.child_name) : '—'}</td>
+      <td>${escapeHtml(a.child_name)}</td>
+      <td>${a.child_age ? escapeHtml(a.child_age) : '—'}</td>
       <td><span class="badge badge-${a.status}">${a.status}</span></td>
       <td>
         <div class="row-actions">
@@ -251,7 +251,7 @@ function renderTable(){
   tableWrap.innerHTML = `
     <table>
       <thead>
-        <tr><th>Data</th><th>Horário</th><th>Responsável</th><th>Criança</th><th>Status</th><th>Ações</th></tr>
+        <tr><th>Recebido em</th><th>Responsável</th><th>Criança</th><th>Idade</th><th>Status</th><th>Ações</th></tr>
       </thead>
       <tbody>${rows}</tbody>
     </table>

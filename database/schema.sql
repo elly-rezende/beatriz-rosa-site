@@ -33,26 +33,18 @@ create table if not exists admins (
 -- ------------------------------------------------------------
 create table if not exists appointments (
   id uuid primary key default gen_random_uuid(),
-  appointment_date date not null,
-  appointment_time text not null,
   responsible_name text not null,
-  child_name text,
+  child_name text not null,
+  child_age text,
   phone text,
   status text not null default 'pendente'
     check (status in ('pendente','confirmado','cancelado')),
   created_at timestamptz not null default now()
 );
 
--- Impede dois agendamentos ativos (não cancelados) no mesmo dia+horário.
--- Isso é garantido pelo PRÓPRIO BANCO, então mesmo que a API tenha um bug,
--- é fisicamente impossível existir duas linhas ativas com o mesmo horário.
-create unique index if not exists unique_active_slot
-  on appointments (appointment_date, appointment_time)
-  where status != 'cancelado';
-
--- Acelera a consulta mais comum: "quais horários já estão ocupados nesse dia?"
-create index if not exists idx_appointments_date
-  on appointments (appointment_date);
+-- Acelera a consulta mais comum no painel: "os mais recentes primeiro"
+create index if not exists idx_appointments_created_at
+  on appointments (created_at desc);
 
 -- ------------------------------------------------------------
 -- Tabela: booking_attempts

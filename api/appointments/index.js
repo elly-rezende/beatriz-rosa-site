@@ -2,16 +2,14 @@
  * /api/appointments
  *
  *  GET  → lista todos os agendamentos. PROTEGIDA: só a médica logada acessa.
- *  POST → cria um novo agendamento. PÚBLICA, mas com validação rigorosa
- *         e limite de tentativas por IP (evita spam/abuso).
+ *  POST → cria um novo pedido de agendamento. PÚBLICA, mas com validação
+ *         rigorosa e limite de tentativas por IP (evita spam/abuso).
  */
 
 const { sql } = require('../../lib/db');
 const { requireAuth } = require('../../lib/auth');
 const { checkAndRecordAttempt } = require('../../lib/rateLimit');
 
-const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
-const ALLOWED_TIMES = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
 const MAX_NAME_LENGTH = 120;
 
 module.exports = async (req, res) => {
@@ -28,10 +26,9 @@ async function handleList(req, res) {
 
   try {
     const rows = await sql`
-      select id, appointment_date, appointment_time, responsible_name,
-             child_name, status, created_at
+      select id, responsible_name, child_name, child_age, status, created_at
       from appointments
-      order by appointment_date asc, appointment_time asc
+      order by created_at desc
     `;
     return res.status(200).json({ appointments: rows });
   } catch (err) {
@@ -50,55 +47,31 @@ async function handleCreate(req, res) {
   }
 
   // 2) Validação dos dados recebidos — nunca confiar no que vem do navegador.
-  const { appointment_date, appointment_time, responsible_name, child_name, phone } = req.body || {};
-
-  if (!appointment_date || !DATE_REGEX.test(appointment_date)) {
-    return res.status(400).json({ error: 'Data inválida.' });
-  }
-
-  // Confere se a data é realmente um sábado e não é uma data passada.
-  const [year, month, day] = appointment_date.split('-').map(Number);
-  const dateObj = new Date(Date.UTC(year, month - 1, day));
-  const isSaturday = dateObj.getUTCDay() === 6;
-  const todayUTC = new Date();
-  todayUTC.setUTCHours(0, 0, 0, 0);
-
-  if (!isSaturday) {
-    return res.status(400).json({ error: 'Só é possível agendar aos sábados.' });
-  }
-  if (dateObj < todayUTC) {
-    return res.status(400).json({ error: 'Não é possível agendar em uma data passada.' });
-  }
-
-  if (!appointment_time || !ALLOWED_TIMES.includes(appointment_time)) {
-    return res.status(400).json({ error: 'Horário inválido.' });
-  }
+  const { responsible_name, child_name, child_age, phone } = req.body || {};
 
   const cleanName = (responsible_name || '').trim();
   if (!cleanName || cleanName.length > MAX_NAME_LENGTH) {
     return res.status(400).json({ error: 'Nome do responsável é obrigatório.' });
   }
 
-  const cleanChildName = child_name ? String(child_name).trim().slice(0, MAX_NAME_LENGTH) : null;
+  const cleanChildName = (child_name || '').trim();
+  if (!cleanChildName || cleanChildName.length > MAX_NAME_LENGTH) {
+    return res.status(400).json({ error: 'Nome da criança/adolescente é obrigatório.' });
+  }
+
+  const cleanChildAge = child_age ? String(child_age).trim().slice(0, 10) : null;
   const cleanPhone = phone ? String(phone).trim().slice(0, 30) : null;
 
-  // 3) Inserção no banco. Se o horário já estiver ocupado, o próprio banco
-  // recusa (por causa do "unique_active_slot" criado no schema.sql) —
-  // isso é o que garante que dois pais nunca consigam marcar o mesmo
-  // horário mesmo clicando ao mesmo tempo.
   try {
     const inserted = await sql`
-      insert into appointments (appointment_date, appointment_time, responsible_name, child_name, phone)
-      values (${appointment_date}, ${appointment_time}, ${cleanName}, ${cleanChildName}, ${cleanPhone})
-      returning id, appointment_date, appointment_time, status
+      insert into appointments (responsible_name, child_name, child_age, phone)
+      values (${cleanName}, ${cleanChildName}, ${cleanChildAge}, ${cleanPhone})
+      returning id, status
     `;
     return res.status(201).json({ appointment: inserted[0] });
   } catch (err) {
-    if (err.code === '23505') {
-      // "unique_violation" do Postgres — alguém marcou esse horário um instante antes.
-      return res.status(409).json({ error: 'Esse horário acabou de ser preenchido por outra pessoa.' });
-    }
     console.error('Erro ao criar agendamento:', err);
     return res.status(500).json({ error: 'Erro interno ao criar o agendamento.' });
   }
 }
+

@@ -211,43 +211,10 @@
   .agenda-head p{color:var(--ink-soft); font-size:16px;}
   .agenda-box{
     background:var(--white); border:1px solid var(--line); border-radius:20px;
-    padding:32px; display:grid; grid-template-columns:1fr 1fr; gap:36px;
+    padding:32px;
   }
-  @media (max-width:760px){ .agenda-box{grid-template-columns:1fr; padding:22px;} }
-
-  .cal-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
-  .cal-head strong{font-family:var(--serif); font-size:18px; color:var(--primary-dark); text-transform:capitalize;}
-  .cal-nav{display:flex; gap:6px;}
-  .cal-nav button{
-    width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--white);
-    cursor:pointer; font-size:15px; color:var(--primary-dark); display:flex; align-items:center; justify-content:center;
-  }
-  .cal-nav button:hover{background:var(--tint);}
-  .cal-weekdays{display:grid; grid-template-columns:repeat(7,1fr); text-align:center; font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); margin-bottom:6px;}
-  .cal-days{display:grid; grid-template-columns:repeat(7,1fr); gap:4px;}
-  .cal-day{
-    aspect-ratio:1; display:flex; align-items:center; justify-content:center;
-    font-size:13.5px; border-radius:8px; color:var(--ink-soft); position:relative;
-  }
-  .cal-day.empty{visibility:hidden;}
-  .cal-day.disabled{color:#C6C0B4;}
-  .cal-day.available{
-    background:var(--tint); color:var(--primary-dark); font-weight:600; cursor:pointer; border:1px solid transparent;
-    transition:background .15s, border-color .15s;
-  }
-  .cal-day.available:hover{border-color:var(--primary);}
-  .cal-day.selected{background:var(--accent); color:var(--white);}
-  .cal-note{margin-top:14px; font-size:13px; color:var(--ink-soft);}
-
-  .slots-title{font-family:var(--mono); font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--primary-dark); margin-bottom:12px;}
-  .slots-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:20px;}
-  .slot-btn{
-    padding:10px 6px; border-radius:8px; border:1px solid var(--line); background:var(--white);
-    font-size:13.5px; cursor:pointer; color:var(--ink-soft); font-family:var(--mono);
-  }
-  .slot-btn:hover{border-color:var(--primary);}
-  .slot-btn.selected{background:var(--primary); border-color:var(--primary); color:var(--white);}
-  .slots-empty{font-size:14px; color:var(--ink-soft); padding:10px 0 20px;}
+  .agenda-box-simple{max-width:440px; margin:0 auto;}
+  @media (max-width:760px){ .agenda-box{padding:22px;} }
 
   .form-field{margin-bottom:14px;}
   .form-field label{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
@@ -425,7 +392,7 @@
       <div class="como-card">
         <span class="eyebrow">Presencial</span>
         <h3>Consultório em Vila Clementino</h3>
-        <p>Atendimento presencial no bairro Vila Clementino, São Paulo — SP. O endereço completo é confirmado no momento do agendamento.</p>
+        <p>Atendimento presencial em Vila Clementino, São Paulo — SP, próximo ao Parque Ibirapuera e à estação Hospital São Paulo do metrô.</p>
       </div>
       <div class="como-card">
         <span class="eyebrow">Online</span>
@@ -450,46 +417,26 @@
     <div class="agenda-head">
       <span class="eyebrow">Agendamento</span>
       <h2 style="margin-top:10px;">Marque sua consulta</h2>
-      <p>Atendimento aos sábados, das 8h às 18h. Escolha o dia e o horário — vamos confirmar tudo pelo WhatsApp.</p>
+      <p>Preencha os dados abaixo — o agendamento é finalizado direto pelo WhatsApp com a Dra. Beatriz.</p>
     </div>
 
-    <div class="agenda-box">
-      <div>
-        <div class="cal-head">
-          <div class="cal-nav">
-            <button type="button" id="prevMonth" aria-label="Mês anterior">‹</button>
-          </div>
-          <strong id="calLabel"></strong>
-          <div class="cal-nav">
-            <button type="button" id="nextMonth" aria-label="Próximo mês">›</button>
-          </div>
+    <div class="agenda-box agenda-box-simple">
+      <form id="bookingForm">
+        <div class="form-field">
+          <label for="respName">Nome do responsável</label>
+          <input type="text" id="respName" name="respName" required>
         </div>
-        <div class="cal-weekdays">
-          <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+        <div class="form-field">
+          <label for="childName">Nome da criança/adolescente</label>
+          <input type="text" id="childName" name="childName" required>
         </div>
-        <div class="cal-days" id="calDays"></div>
-        <p class="cal-note">Apenas os sábados estão disponíveis para agendamento.</p>
-      </div>
-
-      <div>
-        <p class="slots-title">Horários disponíveis</p>
-        <div id="slotsArea">
-          <p class="slots-empty">Selecione um sábado no calendário para ver os horários.</p>
+        <div class="form-field">
+          <label for="childAge">Idade da criança/adolescente</label>
+          <input type="number" id="childAge" name="childAge" min="0" max="21" required>
         </div>
-
-        <form id="bookingForm">
-          <div class="form-field">
-            <label for="respName">Nome do responsável</label>
-            <input type="text" id="respName" name="respName" required>
-          </div>
-          <div class="form-field">
-            <label for="childName">Nome da criança/adolescente</label>
-            <input type="text" id="childName" name="childName">
-          </div>
-          <button type="submit" class="btn btn-primary wa-btn" id="waSubmit" disabled>Confirmar via WhatsApp</button>
-        </form>
-        <div class="agenda-summary" id="agendaSummary"></div>
-      </div>
+        <button type="submit" class="btn btn-primary wa-btn" id="waSubmit">Agendar pelo WhatsApp</button>
+      </form>
+      <div class="agenda-summary" id="agendaSummary"></div>
     </div>
   </div>
 </section>
@@ -623,10 +570,6 @@ const faq = [
     resposta: "Os dois formatos estão disponíveis. O presencial é realizado em Vila Clementino, São Paulo — SP; o online é feito por videochamada."
   },
   {
-    pergunta: "Quais convênios são aceitos?",
-    resposta: "Consulte diretamente pelo WhatsApp para confirmar convênios e valores atualizados."
-  },
-  {
     pergunta: "Quando devo procurar um reumatologista pediátrico?",
     resposta: "Quando a criança apresenta dor ou inchaço articular persistente, febre prolongada sem causa definida, manchas na pele, fraqueza muscular ou alterações mantidas em exames como FAN e Fator Reumatoide."
   }
@@ -662,207 +605,53 @@ sinais.forEach(s => {
   alertaGrid.appendChild(div);
 });
 
-/* ---------------- Calendário (sábados, 8h-18h) — dados reais via API própria ---------------- */
-const monthLabels = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-const SLOT_HOURS = ["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
+/* ---------------- Agendamento (formulário simples → WhatsApp) ---------------- */
 const WHATSAPP_NUMBER = "5511933412191";
 
-let today = new Date();
-today.setHours(0,0,0,0);
-let viewYear = today.getFullYear();
-let viewMonth = today.getMonth();
-let selectedDate = null;
-let selectedSlot = null;
-let takenForSelectedDate = [];
-
-const calLabel = document.getElementById('calLabel');
-const calDays = document.getElementById('calDays');
-const slotsArea = document.getElementById('slotsArea');
+const bookingForm = document.getElementById('bookingForm');
 const waSubmit = document.getElementById('waSubmit');
 const agendaSummary = document.getElementById('agendaSummary');
 
-function fmtDate(d){
-  return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
-}
-
-function isoDate(d){
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
-  return `${y}-${m}-${day}`;
-}
-
-function renderCalendar(){
-  calLabel.textContent = `${monthLabels[viewMonth]} de ${viewYear}`;
-  calDays.innerHTML = '';
-
-  const firstDay = new Date(viewYear, viewMonth, 1);
-  const startWeekday = firstDay.getDay();
-  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-
-  for(let i=0; i<startWeekday; i++){
-    const empty = document.createElement('div');
-    empty.className = 'cal-day empty';
-    calDays.appendChild(empty);
-  }
-
-  for(let day=1; day<=daysInMonth; day++){
-    const date = new Date(viewYear, viewMonth, day);
-    const cell = document.createElement('div');
-    cell.className = 'cal-day';
-    cell.textContent = day;
-
-    const isSaturday = date.getDay() === 6;
-    const isPast = date < today;
-
-    if(isSaturday && !isPast){
-      cell.classList.add('available');
-      cell.setAttribute('role','button');
-      cell.setAttribute('tabindex','0');
-      cell.addEventListener('click', () => selectDate(date, cell));
-      cell.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectDate(date, cell); } });
-      if(selectedDate && date.getTime() === selectedDate.getTime()){
-        cell.classList.add('selected');
-      }
-    } else {
-      cell.classList.add('disabled');
-    }
-    calDays.appendChild(cell);
-  }
-}
-
-async function selectDate(date, cell){
-  selectedDate = date;
-  selectedSlot = null;
-  document.querySelectorAll('.cal-day.selected').forEach(el => el.classList.remove('selected'));
-  cell.classList.add('selected');
-  await loadTakenSlotsAndRender();
-  updateSubmitState();
-}
-
-async function loadTakenSlotsAndRender(){
-  slotsArea.innerHTML = '<p class="slots-empty">Carregando horários...</p>';
-  try {
-    const response = await fetch(`/api/availability?date=${isoDate(selectedDate)}`);
-    if(!response.ok){ throw new Error('Falha ao buscar horários'); }
-    const data = await response.json();
-    takenForSelectedDate = data.takenTimes || [];
-    renderSlots();
-  } catch (err) {
-    slotsArea.innerHTML = '<p class="slots-empty">Não foi possível carregar os horários agora. Tente novamente em instantes.</p>';
-  }
-}
-
-function renderSlots(){
-  slotsArea.innerHTML = '';
-  if(!selectedDate){
-    slotsArea.innerHTML = '<p class="slots-empty">Selecione um sábado no calendário para ver os horários.</p>';
-    return;
-  }
-  const grid = document.createElement('div');
-  grid.className = 'slots-grid';
-  SLOT_HOURS.forEach(hour => {
-    const taken = takenForSelectedDate.includes(hour);
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'slot-btn';
-    btn.textContent = taken ? `${hour} · ocupado` : hour;
-    if(taken){
-      btn.disabled = true;
-      btn.style.opacity = '0.4';
-      btn.style.cursor = 'not-allowed';
-    } else {
-      btn.addEventListener('click', () => {
-        selectedSlot = hour;
-        document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        updateSubmitState();
-      });
-    }
-    grid.appendChild(btn);
-  });
-  slotsArea.appendChild(grid);
-}
-
-function updateSubmitState(){
-  const respName = document.getElementById('respName').value.trim();
-  waSubmit.disabled = !(selectedDate && selectedSlot && respName);
-}
-
-document.getElementById('respName').addEventListener('input', updateSubmitState);
-
-document.getElementById('prevMonth').addEventListener('click', () => {
-  viewMonth--;
-  if(viewMonth < 0){ viewMonth = 11; viewYear--; }
-  renderCalendar();
-});
-document.getElementById('nextMonth').addEventListener('click', () => {
-  viewMonth++;
-  if(viewMonth > 11){ viewMonth = 0; viewYear++; }
-  renderCalendar();
-});
-
-document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+bookingForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if(!selectedDate || !selectedSlot) return;
 
   const respName = document.getElementById('respName').value.trim();
   const childName = document.getElementById('childName').value.trim();
+  const childAge = document.getElementById('childAge').value.trim();
 
   waSubmit.disabled = true;
-  waSubmit.textContent = 'Confirmando...';
+  waSubmit.textContent = 'Enviando...';
 
-  let response, result;
+  // Salva o pedido de agendamento no banco (para a Dra. Beatriz ver no painel).
+  // Se der algum problema de conexão, o agendamento ainda assim segue pelo
+  // WhatsApp normalmente — o registro no painel é um extra, não um bloqueio.
   try {
-    response = await fetch('/api/appointments', {
+    await fetch('/api/appointments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        appointment_date: isoDate(selectedDate),
-        appointment_time: selectedSlot,
         responsible_name: respName,
-        child_name: childName || null
+        child_name: childName,
+        child_age: childAge
       })
     });
-    result = await response.json();
   } catch (err) {
-    waSubmit.textContent = 'Confirmar via WhatsApp';
-    agendaSummary.textContent = 'Não foi possível confirmar o agendamento agora. Verifique sua conexão e tente novamente.';
-    agendaSummary.classList.add('show');
-    updateSubmitState();
-    return;
+    // segue o fluxo mesmo assim
   }
 
-  waSubmit.textContent = 'Confirmar via WhatsApp';
-
-  if(!response.ok){
-    if(response.status === 409){
-      agendaSummary.textContent = 'Esse horário acabou de ser preenchido por outra pessoa. Escolha outro horário.';
-      agendaSummary.classList.add('show');
-      await loadTakenSlotsAndRender();
-      selectedSlot = null;
-    } else {
-      agendaSummary.textContent = result.error || 'Não foi possível confirmar o agendamento agora. Tente novamente em instantes.';
-      agendaSummary.classList.add('show');
-    }
-    updateSubmitState();
-    return;
-  }
-
-  let msg = `Olá! Gostaria de confirmar minha consulta com a Dra. Beatriz Rosa em ${fmtDate(selectedDate)} às ${selectedSlot}.`;
+  let msg = `Olá! Gostaria de agendar uma consulta com a Dra. Beatriz Rosa.`;
   msg += ` Nome do responsável: ${respName}.`;
-  if(childName){ msg += ` Nome da criança/adolescente: ${childName}.`; }
+  msg += ` Nome da criança/adolescente: ${childName}, ${childAge} anos.`;
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-  agendaSummary.textContent = `Agendamento registrado: ${fmtDate(selectedDate)} às ${selectedSlot} — abrindo o WhatsApp para confirmar com a Dra. Beatriz...`;
+  waSubmit.disabled = false;
+  waSubmit.textContent = 'Agendar pelo WhatsApp';
+  agendaSummary.textContent = 'Abrindo o WhatsApp para finalizar o agendamento com a Dra. Beatriz...';
   agendaSummary.classList.add('show');
 
   window.open(url, '_blank', 'noopener');
-  updateSubmitState();
 });
-
-renderCalendar();
 </script>
 
 </body>

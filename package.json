@@ -1,0 +1,14 @@
+{
+  "name": "beatriz-rosa-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site da Dra. Beatriz Rosa - Reumatologia Pediatrica, com backend proprio (Vercel Functions + Neon Postgres).",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.5",
+    "bcryptjs": "^2.4.3",
+    "jose": "^5.9.6"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

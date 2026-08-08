@@ -1,0 +1,15 @@
+# Dependências instaladas — o Vercel reinstala sozinho a partir do package.json,
+# nunca commitamos essa pasta (ela é gigante e não pertence ao histórico do projeto).
+node_modules/
+
+# Segredos locais — NUNCA devem ir para o GitHub.
+.env
+.env.local
+.env*.local
+
+# Arquivos gerados pela Vercel CLI, se você usar (vercel dev / vercel link).
+.vercel
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Dra. Beatriz Rosa</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E2A26; --ink-soft:#3F4E48; --primary:#3E6259; --primary-dark:#24413A;
+    --accent:#C97A3D; --accent-dark:#A85F29; --bg:#F6F2EA; --tint:#E7EEEA;
+    --line:#D8D0C0; --white:#FFFDF9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.5;}
+  h1,h2{font-family:'Fraunces',serif; font-weight:600; margin:0;}
+  .wrap{max-width:960px; margin:0 auto; padding:40px 20px;}
+
+  .login-box{
+    max-width:360px; margin:80px auto; background:var(--white); border:1px solid var(--line);
+    border-radius:16px; padding:32px;
+  }
+  .login-box h1{font-size:22px; color:var(--primary-dark); margin-bottom:6px;}
+  .login-box p.sub{color:var(--ink-soft); font-size:14px; margin-bottom:24px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
+  .field input{
+    width:100%; padding:11px 13px; border-radius:8px; border:1px solid var(--line);
+    font-size:14.5px; font-family:inherit;
+  }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight:600; font-size:14.5px; padding:12px 20px; border-radius:999px;
+    border:0; cursor:pointer; background:var(--accent); color:#fff; width:100%;
+  }
+  .btn:hover{background:var(--accent-dark);}
+  .btn:disabled{opacity:0.6; cursor:not-allowed;}
+  .error-msg{color:#B3261E; font-size:13.5px; margin-top:12px; display:none;}
+  .error-msg.show{display:block;}
+
+  #dashboard{display:none;}
+  .top-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px;}
+  .top-row h1{font-size:24px; color:var(--primary-dark);}
+  .logout-btn{
+    background:transparent; border:1px solid var(--line); color:var(--primary-dark);
+    padding:9px 16px; border-radius:999px; font-size:13.5px; cursor:pointer; font-family:inherit;
+  }
+  .logout-btn:hover{background:var(--white);}
+
+  .filters{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;}
+  .filter-btn{
+    padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--white);
+    font-size:13px; cursor:pointer; color:var(--ink-soft); font-family:inherit;
+  }
+  .filter-btn.active{background:var(--primary-dark); color:#fff; border-color:var(--primary-dark);}
+
+  table{width:100%; border-collapse:collapse; background:var(--white); border-radius:12px; overflow:hidden; border:1px solid var(--line);}
+  th, td{text-align:left; padding:12px 14px; font-size:13.5px; border-bottom:1px solid var(--line);}
+  th{background:var(--tint); color:var(--primary-dark); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:0.03em;}
+  tr:last-child td{border-bottom:none;}
+
+  .badge{display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600;}
+  .badge-pendente{background:#FCEBD9; color:#A85F29;}
+  .badge-confirmado{background:#DCEBE4; color:#24413A;}
+  .badge-cancelado{background:#F2DEDE; color:#B3261E;}
+
+  .row-actions{display:flex; gap:6px;}
+  .row-actions button{
+    border:1px solid var(--line); background:var(--white); border-radius:6px; padding:6px 10px;
+    font-size:12px; cursor:pointer; font-family:inherit;
+  }
+  .row-actions button:hover{background:var(--tint);}
+
+  .empty-state{padding:40px; text-align:center; color:var(--ink-soft); font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="login-box" id="loginBox">
+  <h1>Painel da Dra. Beatriz</h1>
+  <p class="sub">Área restrita — acesso apenas para a médica.</p>
+  <form id="loginForm">
+    <div class="field">
+      <label for="loginEmail">E-mail</label>
+      <input type="email" id="loginEmail" required autocomplete="username">
+    </div>
+    <div class="field">
+      <label for="loginPassword">Senha</label>
+      <input type="password" id="loginPassword" required autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn" id="loginBtn">Entrar</button>
+    <p class="error-msg" id="loginError">E-mail ou senha incorretos.</p>
+  </form>
+</div>
+
+<div id="dashboard">
+  <div class="wrap">
+    <div class="top-row">
+      <h1>Agendamentos</h1>
+      <button class="logout-btn" id="logoutBtn">Sair</button>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="pendente">Pendentes</button>
+      <button class="filter-btn" data-filter="confirmado">Confirmados</button>
+      <button class="filter-btn" data-filter="cancelado">Cancelados</button>
+    </div>
+
+    <div id="tableWrap"></div>
+  </div>
+</div>
+
+<script>
+/**
+ * Este arquivo conversa com a nossa própria API (pasta /api), nunca direto
+ * com o banco de dados. O login funciona por cookie: depois de um POST bem
+ * sucedido em /api/auth/login, o navegador guarda o cookie automaticamente
+ * e passa a enviá-lo sozinho em toda requisição seguinte — não precisamos
+ * guardar nem manipular nenhum token aqui no JavaScript.
+ */
+
+const loginBox = document.getElementById('loginBox');
+const dashboard = document.getElementById('dashboard');
+const loginForm = document.getElementById('loginForm');
+const loginBtn = document.getElementById('loginBtn');
+const loginError = document.getElementById('loginError');
+const tableWrap = document.getElementById('tableWrap');
+
+let allAppointments = [];
+let currentFilter = 'todos';
+
+async function checkSession(){
+  const response = await fetch('/api/auth/session');
+  const data = await response.json();
+  if(data.authenticated){
+    showDashboard();
+  } else {
+    showLogin();
+  }
+}
+
+function showLogin(){
+  loginBox.style.display = 'block';
+  dashboard.style.display = 'none';
+}
+
+function showDashboard(){
+  loginBox.style.display = 'none';
+  dashboard.style.display = 'block';
+  loadAppointments();
+}
+
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  loginBtn.disabled = true;
+  loginBtn.textContent = 'Entrando...';
+  loginError.classList.remove('show');
+
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Entrar';
+
+    if(!response.ok){
+      loginError.classList.add('show');
+      return;
+    }
+    showDashboard();
+  } catch (err) {
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Entrar';
+    loginError.textContent = 'Não foi possível conectar. Tente novamente.';
+    loginError.classList.add('show');
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  await fetch('/api/auth/logout', { method: 'POST' });
+  showLogin();
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderTable();
+  });
+});
+
+async function loadAppointments(){
+  tableWrap.innerHTML = '<p class="empty-state">Carregando agendamentos...</p>';
+  try {
+    const response = await fetch('/api/appointments');
+    if(response.status === 401){
+      showLogin();
+      return;
+    }
+    if(!response.ok) throw new Error('Falha ao carregar');
+    const data = await response.json();
+    allAppointments = data.appointments || [];
+    renderTable();
+  } catch (err) {
+    tableWrap.innerHTML = '<p class="empty-state">Não foi possível carregar os agendamentos.</p>';
+  }
+}
+
+function fmtDateBR(isoStr){
+  const [y,m,d] = isoStr.split('T')[0].split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function renderTable(){
+  const filtered = currentFilter === 'todos'
+    ? allAppointments
+    : allAppointments.filter(a => a.status === currentFilter);
+
+  if(filtered.length === 0){
+    tableWrap.innerHTML = '<p class="empty-state">Nenhum agendamento encontrado.</p>';
+    return;
+  }
+
+  let rows = filtered.map(a => `
+    <tr>
+      <td>${fmtDateBR(a.appointment_date)}</td>
+      <td>${a.appointment_time}</td>
+      <td>${escapeHtml(a.responsible_name)}</td>
+      <td>${a.child_name ? escapeHtml(a.child_name) : '—'}</td>
+      <td><span class="badge badge-${a.status}">${a.status}</span></td>
+      <td>
+        <div class="row-actions">
+          ${a.status !== 'confirmado' ? `<button data-id="${a.id}" data-status="confirmado">Confirmar</button>` : ''}
+          ${a.status !== 'cancelado' ? `<button data-id="${a.id}" data-status="cancelado">Cancelar</button>` : ''}
+        </div>
+      </td>
+    </tr>
+  `).join('');
+
+  tableWrap.innerHTML = `
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Horário</th><th>Responsável</th><th>Criança</th><th>Status</th><th>Ações</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+
+  tableWrap.querySelectorAll('button[data-id]').forEach(btn => {
+    btn.addEventListener('click', () => updateStatus(btn.dataset.id, btn.dataset.status));
+  });
+}
+
+async function updateStatus(id, status){
+  try {
+    const response = await fetch(`/api/appointments/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    });
+    if(response.ok){
+      await loadAppointments();
+    }
+  } catch (err) {
+    // silenciosamente ignora — a lista simplesmente não vai atualizar
+    // e o usuário pode tentar de novo
+  }
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+checkSession();
+</script>
+</body>
+</html>

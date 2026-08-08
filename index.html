@@ -662,7 +662,7 @@ sinais.forEach(s => {
   alertaGrid.appendChild(div);
 });
 
-/* ---------------- Calendário (sábados, 8h-18h) ---------------- */
+/* ---------------- Calendário (sábados, 8h-18h) — dados reais via API própria ---------------- */
 const monthLabels = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 const SLOT_HOURS = ["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
 const WHATSAPP_NUMBER = "5511933412191";
@@ -673,6 +673,7 @@ let viewYear = today.getFullYear();
 let viewMonth = today.getMonth();
 let selectedDate = null;
 let selectedSlot = null;
+let takenForSelectedDate = [];
 
 const calLabel = document.getElementById('calLabel');
 const calDays = document.getElementById('calDays');
@@ -682,6 +683,13 @@ const agendaSummary = document.getElementById('agendaSummary');
 
 function fmtDate(d){
   return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+}
+
+function isoDate(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
 }
 
 function renderCalendar(){
@@ -723,13 +731,26 @@ function renderCalendar(){
   }
 }
 
-function selectDate(date, cell){
+async function selectDate(date, cell){
   selectedDate = date;
   selectedSlot = null;
   document.querySelectorAll('.cal-day.selected').forEach(el => el.classList.remove('selected'));
   cell.classList.add('selected');
-  renderSlots();
+  await loadTakenSlotsAndRender();
   updateSubmitState();
+}
+
+async function loadTakenSlotsAndRender(){
+  slotsArea.innerHTML = '<p class="slots-empty">Carregando horários...</p>';
+  try {
+    const response = await fetch(`/api/availability?date=${isoDate(selectedDate)}`);
+    if(!response.ok){ throw new Error('Falha ao buscar horários'); }
+    const data = await response.json();
+    takenForSelectedDate = data.takenTimes || [];
+    renderSlots();
+  } catch (err) {
+    slotsArea.innerHTML = '<p class="slots-empty">Não foi possível carregar os horários agora. Tente novamente em instantes.</p>';
+  }
 }
 
 function renderSlots(){
@@ -741,16 +762,23 @@ function renderSlots(){
   const grid = document.createElement('div');
   grid.className = 'slots-grid';
   SLOT_HOURS.forEach(hour => {
+    const taken = takenForSelectedDate.includes(hour);
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'slot-btn';
-    btn.textContent = hour;
-    btn.addEventListener('click', () => {
-      selectedSlot = hour;
-      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      updateSubmitState();
-    });
+    btn.textContent = taken ? `${hour} · ocupado` : hour;
+    if(taken){
+      btn.disabled = true;
+      btn.style.opacity = '0.4';
+      btn.style.cursor = 'not-allowed';
+    } else {
+      btn.addEventListener('click', () => {
+        selectedSlot = hour;
+        document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        updateSubmitState();
+      });
+    }
     grid.appendChild(btn);
   });
   slotsArea.appendChild(grid);
@@ -774,26 +802,68 @@ document.getElementById('nextMonth').addEventListener('click', () => {
   renderCalendar();
 });
 
-document.getElementById('bookingForm').addEventListener('submit', (e) => {
+document.getElementById('bookingForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   if(!selectedDate || !selectedSlot) return;
 
   const respName = document.getElementById('respName').value.trim();
   const childName = document.getElementById('childName').value.trim();
 
-  let msg = `Olá! Gostaria de agendar uma consulta com a Dra. Beatriz Rosa para ${fmtDate(selectedDate)} às ${selectedSlot}.`;
+  waSubmit.disabled = true;
+  waSubmit.textContent = 'Confirmando...';
+
+  let response, result;
+  try {
+    response = await fetch('/api/appointments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        appointment_date: isoDate(selectedDate),
+        appointment_time: selectedSlot,
+        responsible_name: respName,
+        child_name: childName || null
+      })
+    });
+    result = await response.json();
+  } catch (err) {
+    waSubmit.textContent = 'Confirmar via WhatsApp';
+    agendaSummary.textContent = 'Não foi possível confirmar o agendamento agora. Verifique sua conexão e tente novamente.';
+    agendaSummary.classList.add('show');
+    updateSubmitState();
+    return;
+  }
+
+  waSubmit.textContent = 'Confirmar via WhatsApp';
+
+  if(!response.ok){
+    if(response.status === 409){
+      agendaSummary.textContent = 'Esse horário acabou de ser preenchido por outra pessoa. Escolha outro horário.';
+      agendaSummary.classList.add('show');
+      await loadTakenSlotsAndRender();
+      selectedSlot = null;
+    } else {
+      agendaSummary.textContent = result.error || 'Não foi possível confirmar o agendamento agora. Tente novamente em instantes.';
+      agendaSummary.classList.add('show');
+    }
+    updateSubmitState();
+    return;
+  }
+
+  let msg = `Olá! Gostaria de confirmar minha consulta com a Dra. Beatriz Rosa em ${fmtDate(selectedDate)} às ${selectedSlot}.`;
   msg += ` Nome do responsável: ${respName}.`;
   if(childName){ msg += ` Nome da criança/adolescente: ${childName}.`; }
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-  agendaSummary.textContent = `Solicitação: ${fmtDate(selectedDate)} às ${selectedSlot} — abrindo o WhatsApp...`;
+  agendaSummary.textContent = `Agendamento registrado: ${fmtDate(selectedDate)} às ${selectedSlot} — abrindo o WhatsApp para confirmar com a Dra. Beatriz...`;
   agendaSummary.classList.add('show');
 
   window.open(url, '_blank', 'noopener');
+  updateSubmitState();
 });
 
 renderCalendar();
 </script>
+
 </body>
 </html>

@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 <title>Dra. Beatriz Rosa — Reumatologia Pediátrica</title>
+<meta name="description" content="Dra. Beatriz Rosa, especialista em Reumatologia Pediátrica. Cuidado especializado para crianças e adolescentes com doenças reumáticas. Atendimento presencial em Vila Clementino e online.">
 <meta property="og:title" content="Dra. Beatriz Rosa — Reumatologia Pediátrica">
-<meta property="og:description" content="Cuidado especializado para crianças e adolescentes com doenças reumáticas. Atendimento presencial em Vila Clementino e online.">
+<meta property="og:description" content="Dra. Beatriz Rosa, especialista em Reumatologia Pediátrica. Cuidado especializado para crianças e adolescentes com doenças reumáticas. Atendimento presencial em Vila Clementino e online.">
 <meta property="og:image" content="https://beatriz-rosa-site.vercel.app/og-image.jpg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -15,324 +17,10 @@
 <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
-<meta name="description" content="Dra. Beatriz Rosa, especialista em Reumatologia Pediátrica. Cuidado especializado para crianças e adolescentes com doenças reumáticas. Atendimento presencial em Vila Clementino e online.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#000000;
-    --ink-soft:#3F4E48;
-    --primary:#546964;
-    --primary-dark:#434746;
-    --accent:#C97A3D;
-    --accent-dark:#A85F29;
-    --bg:#F6F2EA;
-    --bg-alt:#EFEAE0;
-    --tint:#E7EEEA;
-    --line:#D8D0C0;
-    --white:#ffffff;
-    --radius:14px;
-    --serif: 'Fraunces', serif;
-    --sans: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:var(--sans);
-    color:var(--ink);
-    background:var(--bg);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
-  }
-  img,svg{display:block; max-width:100%;}
-  a{color:inherit;}
-  h1,h2,h3{font-family:var(--serif); font-weight:600; margin:0; letter-spacing:-0.01em;}
-  p{margin:0;}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
-  .section{padding:88px 0;}
-  .section-sm{padding:56px 0;}
-  @media (max-width:640px){
-    .section{padding:56px 0;}
-    .section-sm{padding:40px 0;}
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12.5px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--primary-dark);
-  }
-  .divider{height:1px; background:var(--line); border:0; margin:0;}
-
-  /* NAV */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(246,242,234,0.9);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{
-    max-width:1080px; margin:0 auto; padding:16px 24px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .nav-name{font-family:var(--serif); font-weight:600; font-size:19px; color:var(--primary-dark);}
-  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
-  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
-  .nav-links a:hover{color:var(--primary);}
-  .nav-cta{
-    background:var(--accent); color:var(--white); font-weight:600; font-size:14px;
-    padding:10px 18px; border-radius:999px; text-decoration:none; white-space:nowrap;
-    transition:background .15s;
-  }
-  .nav-cta:hover{background:var(--accent-dark);}
-.nav-toggle{
-  display:none; flex-direction:column; justify-content:center; gap:5px;
-  width:36px; height:36px; background:none; border:0; cursor:pointer; padding:0;
-}
-.nav-toggle span{ display:block; width:22px; height:2px; background:var(--primary-dark); border-radius:2px; }
-.nav-mobile-panel{
-  display:none; flex-direction:column; gap:2px; padding:8px 24px 20px;
-  border-top:1px solid var(--line); background:var(--bg);
-}
-.nav-mobile-panel a{
-  padding:12px 4px; font-size:15px; color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line);
-}
-.nav-mobile-panel a:last-child{ border-bottom:0; }
-.nav-mobile-cta{
-  margin-top:10px; text-align:center; background:var(--accent); color:var(--white) !important;
-  border-radius:999px; padding:12px 4px !important; font-weight:600; border-bottom:0 !important;
-}
-.nav.open .nav-mobile-panel{ display:flex; }
- @media (max-width:760px){
-  .nav-links{display:none;}
-  .nav-toggle{display:flex;}
-  .nav-cta{display:none;}
-}
-
-  /* HERO */
-  .hero{position:relative; overflow:hidden; padding:76px 0 64px;}
-  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
-  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
-  .hero-eyebrow{margin-bottom:18px; display:flex; flex-wrap:wrap; gap:8px;}
-  .chip{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.03em;
-    background:var(--tint); color:var(--primary-dark);
-    border:1px solid var(--line); border-radius:999px; padding:6px 12px;
-  }
-  .hero h1{
-    font-size:clamp(32px, 4.2vw, 50px);
-    line-height:1.12;
-    color:var(--primary-dark);
-    max-width:15ch;
-  }
-  .hero-sub{
-    margin-top:20px; font-size:17.5px; color:var(--ink-soft); max-width:46ch;
-  }
-  .hero-actions{margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    font-weight:600; font-size:15px; text-decoration:none;
-    padding:14px 24px; border-radius:999px; transition:transform .15s, background .15s;
-    border:1px solid transparent; cursor:pointer;
-  }
-  .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:var(--accent); color:var(--white);}
-  .btn-primary:hover{background:var(--accent-dark);}
-  .btn-ghost{background:transparent; color:var(--primary-dark); border-color:var(--line);}
-  .btn-ghost:hover{background:var(--white);}
-
-  .hero-figure{position:relative; aspect-ratio:1/1.05; border-radius:24px; background:var(--primary-dark); overflow:hidden;}
-  .hero-figure svg{width:100%; height:100%;}
-  .hero-figure .cap{
-    position:absolute; left:0; right:0; bottom:0; padding:18px 20px;
-    background:linear-gradient(180deg, rgba(36,65,58,0) 0%, rgba(24,41,36,0.85) 100%);
-    color:#EFF4F1; font-family:var(--mono); font-size:11.5px; letter-spacing:0.03em;
-  }
-.agenda-head{ position:relative; }
-.agenda-sticker{
-  position:absolute; top:-10px; right:-8px;
-  width:84px; height:84px; border-radius:18px; overflow:hidden;
-  transform:rotate(8deg);
-  border:4px solid var(--white); box-shadow:0 10px 24px rgba(36,65,58,0.18);
-}
-.agenda-sticker img{ width:100%; height:100%; object-fit:cover; object-position:50% 45%; display:block; }
-@media (max-width:640px){ .agenda-sticker{ display:none; } }
-  .trust-bar{
-    margin-top:56px; padding-top:32px; border-top:1px solid var(--line);
-    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
-  }
-  @media (max-width:760px){ .trust-bar{grid-template-columns:repeat(2,1fr);} }
-  .trust-item strong{display:block; font-family:var(--serif); font-size:17px; color:var(--primary-dark); margin-bottom:4px;}
-  .trust-item span{font-size:13px; color:var(--ink-soft);}
-
-  .curve-wrap{position:absolute; inset:0; z-index:0; opacity:0.55; pointer-events:none;}
-  .curve-path{
-    stroke-dasharray:1400; stroke-dashoffset:1400;
-    animation:draw 2.2s ease forwards .3s;
-  }
-  @keyframes draw{ to{stroke-dashoffset:0;} }
-
-  /* SOBRE */
-  .about{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
-  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
-  .about-photo{
-    aspect-ratio:4/5; border-radius:var(--radius); background:var(--tint);
-    display:flex; align-items:center; justify-content:center;
-    border:1px solid var(--line);
-  }
-  .about-photo-inner{text-align:center; padding:24px; color:var(--primary-dark);}
-  .about-photo-inner svg{margin:0 auto 12px;}
-  .about-photo-inner span{font-family:var(--mono); font-size:12px; color:var(--ink-soft);}
-  .formacao{list-style:none; margin:22px 0 0; padding:0; display:grid; gap:12px;}
-  .formacao li{
-    display:grid; grid-template-columns:20px 1fr; gap:10px; font-size:14.5px; color:var(--ink-soft);
-  }
-  .formacao li::before{content:''; width:6px; height:6px; margin-top:8px; border-radius:50%; background:var(--accent);}
-  .about h2{font-size:clamp(26px,3vw,32px); color:var(--primary-dark); margin-bottom:16px;}
-  .about-bio p + p{margin-top:14px;}
-  .about-bio{font-size:16px; color:var(--ink-soft);}
-
-  /* AREAS */
-  .areas-head{max-width:640px; margin-bottom:40px;}
-  .areas-head h2{font-size:clamp(26px,3vw,32px); color:var(--primary-dark); margin-bottom:12px;}
-  .areas-head p{color:var(--ink-soft); font-size:16px;}
-  .accordion{border-top:1px solid var(--line);}
-  details.acc-item{border-bottom:1px solid var(--line);}
-  details.acc-item summary{
-    list-style:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-    padding:20px 4px; font-family:var(--serif); font-size:19px; color:var(--primary-dark);
-  }
-  details.acc-item summary::-webkit-details-marker{display:none;}
-  .acc-plus{
-    flex:none; width:26px; height:26px; border-radius:50%; border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center; position:relative; transition:transform .2s, background .2s;
-  }
-  .acc-plus::before, .acc-plus::after{
-    content:''; position:absolute; background:var(--primary-dark);
-  }
-  .acc-plus::before{width:10px; height:1.5px;}
-  .acc-plus::after{width:1.5px; height:10px;}
-  details[open] .acc-plus{background:var(--accent); border-color:var(--accent);}
-  details[open] .acc-plus::before, details[open] .acc-plus::after{background:var(--white);}
-  details[open] .acc-plus::after{transform:scaleY(0);}
-  .acc-body{padding:0 4px 24px; max-width:70ch; color:var(--ink-soft); font-size:15.5px;}
-  .acc-body p + p{margin-top:10px;}
-
-  /* QUANDO PROCURAR */
-  .alerta{background:var(--tint); color:var(--ink);}
-.alerta h2{font-size:clamp(24px,3vw,30px); margin-bottom:10px; color:var(--primary-dark);}
-.alerta p.lead{color:var(--ink-soft); max-width:56ch; margin-bottom:32px;}
-.alerta-grid{display:flex; flex-wrap:wrap; gap:2px; background:var(--line); border-radius:var(--radius); overflow:hidden;}
-.alerta-item{background:var(--white); color:var(--ink-soft); padding:18px 20px; font-size:14.5px; flex:1 1 220px;}
-
-  /* COMO FUNCIONA */
-  .como-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
-  @media (max-width:700px){ .como-grid{grid-template-columns:1fr;} }
-  .como-card{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:28px;}
-  .como-card .eyebrow{margin-bottom:10px;}
-  .como-card h3{font-size:20px; color:var(--primary-dark); margin-bottom:8px;}
-  .como-card p{color:var(--ink-soft); font-size:15px;}
-
-  /* AGENDAMENTO */
-  .agenda{background:var(--tint); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .agenda-head{max-width:640px; margin-bottom:36px;}
-  .agenda-head h2{font-size:clamp(26px,3vw,32px); color:var(--primary-dark); margin-bottom:12px;}
-  .agenda-head p{color:var(--ink-soft); font-size:16px;}
-  .agenda-box{
-    background:var(--white); border:1px solid var(--line); border-radius:20px;
-    padding:32px;
-  }
-  .agenda-box-simple{max-width:440px; margin:0 auto;}
-  @media (max-width:760px){ .agenda-box{padding:22px;} }
-
-  .form-field{margin-bottom:14px;}
-  .form-field label{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
-  .form-field input{
-    width:100%; padding:11px 13px; border-radius:8px; border:1px solid var(--line);
-    background:var(--white); font-family:var(--sans); font-size:14.5px; color:var(--ink);
-  }
-  .form-field input:focus{outline:2px solid var(--primary); outline-offset:1px;}
-  .wa-btn{
-    width:100%; justify-content:center; margin-top:6px;
-  }
-  .wa-btn:disabled{opacity:0.5; cursor:not-allowed; transform:none;}
-  .privacy-note{
-  margin-top:12px; font-size:12.5px; color:var(--ink-soft); text-align:center; line-height:1.5;
-}
-  .agenda-summary{
-    margin-top:16px; font-size:13.5px; color:var(--primary-dark); background:var(--tint);
-    border-radius:8px; padding:12px 14px; display:none;
-  }
-  .agenda-summary.show{display:block;}
-
-  /* CTA BANNER */
-  .cta-banner{background:var(--primary-dark); padding:64px 0;}
-  .cta-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;}
-  .cta-inner h2{color:#fff; font-size:clamp(22px,2.6vw,28px); max-width:34ch;}
-
-  /* FAQ */
-  .faq{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-
-  /* FOOTER / CONTATO */
-  footer{background:var(--primary-dark); color:#DCE7E2; padding:56px 0 28px;}
-  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:36px; margin-bottom:40px;}
-  @media (max-width:700px){ .footer-grid{grid-template-columns:1fr;} }
-  footer h4{font-family:var(--serif); font-size:18px; color:#fff; margin-bottom:14px;}
-  footer .foot-name{font-family:var(--serif); font-size:22px; color:#fff; margin-bottom:8px;}
-  footer p, footer a{font-size:14px; color:#B9CAC3; line-height:1.8;}
-  footer a{text-decoration:none;}
-  footer a:hover{color:#fff;}
-  .foot-bottom{
-    border-top:1px solid rgba(255,255,255,0.12); padding-top:22px;
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    font-size:12.5px; color:#8FA69D;
-  }
-
-  .skip-link{
-    position:absolute; left:-999px; top:0; background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; z-index:100;
-  }
-  .skip-link:focus{left:16px; top:16px;}
-
-  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Physician",
-  "name": "Dra. Beatriz Rosa",
-  "image": "https://beatriz-rosa-site.vercel.app/beatriz.jpeg",
-  "url": "https://beatriz-rosa-site.vercel.app/",
-  "telephone": "+5511933412191",
-  "medicalSpecialty": "Rheumatology",
-  "description": "Reumatologista pediátrica especializada no cuidado de crianças e adolescentes com doenças reumáticas, incluindo artrite idiopática juvenil, lúpus eritematoso sistêmico juvenil e outras condições autoimunes.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "São Paulo",
-    "addressRegion": "SP",
-    "addressCountry": "BR",
-    "streetAddress": "Vila Clementino"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": "Saturday",
-    "opens": "08:00",
-    "closes": "18:00"
-  },
-  "availableService": {
-    "@type": "MedicalTherapy",
-    "name": "Consulta em Reumatologia Pediátrica"
-  }
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -364,49 +52,34 @@
 </script>
 </head>
 <body>
-<a href="#agendamento" class="skip-link">Ir para agendamento</a>
-
+<a href="index.html#agendamento" class="skip-link">Ir para agendamento</a>
 <header class="nav">
   <div class="nav-inner">
-      <div class="nav-name">Dra. Beatriz Rosa</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#areas">Áreas de atuação</a></li>
-          <li><a href="#atendimento">Atendimento</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-      <a class="nav-cta" href="#agendamento">Agendar consulta</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile-panel" id="navMobilePanel">
-  <a href="#sobre">Sobre</a>
-  <a href="#areas">Áreas de atuação</a>
-  <a href="#atendimento">Atendimento</a>
-  <a href="#contato">Contato</a>
-  <a href="#agendamento" class="nav-mobile-cta">Agendar consulta</a>
-    </div>
+    <a class="nav-name" href="index.html">Dra. Beatriz Rosa</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="index.html#areas">Áreas de atuação</a></li>
+        <li><a href="index.html#atendimento">Atendimento</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="index.html#agendamento">Agendar consulta</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-panel" id="navMobilePanel">
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#areas">Áreas de atuação</a>
+    <a href="index.html#atendimento">Atendimento</a>
+    <a href="index.html#contato">Contato</a>
+    <a href="index.html#agendamento" class="nav-mobile-cta">Agendar consulta</a>
+  </div>
 </header>
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const navHeader = document.querySelector('header.nav');
-  navToggle.addEventListener('click', () => {
-    const isOpen = navHeader.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-  document.querySelectorAll('#navMobilePanel a').forEach(a => {
-    a.addEventListener('click', () => {
-      navHeader.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-</script>
+
 <!-- HERO -->
 <section class="hero">
-
   <div class="wrap hero-grid" style="position:relative; z-index:1;">
     <div>
       <div class="hero-eyebrow">
@@ -417,11 +90,14 @@
       <h1>Cuidado especializado para crianças e adolescentes com doenças reumáticas.</h1>
       <p class="hero-sub">Conhecimento, acolhimento e cuidado em cada etapa da jornada — do primeiro sintoma ao acompanhamento contínuo, ao lado da sua família.</p>
       <div class="hero-actions">
-        <a href="#agendamento" class="btn btn-primary">Agendar consulta</a>
-        <a href="#sobre" class="btn btn-ghost">Conhecer a Dra. Beatriz</a>
+        <div class="btn-row">
+          <a href="#agendamento" class="btn btn-primary">Agendar consulta</a>
+          <a href="sobre.html" class="btn btn-ghost">Conhecer a Dra. Beatriz</a>
+        </div>
       </div>
     </div>
-    <img src="beatriz.jpeg" alt="Dra. Beatriz Rosa" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">
+    <div class="hero-figure">
+      <img src="beatriz.jpeg" alt="Dra. Beatriz Rosa">
     </div>
   </div>
   <div class="wrap trust-bar" style="position:relative; z-index:1;">
@@ -432,29 +108,20 @@
   </div>
 </section>
 
-<!-- SOBRE -->
+<!-- SOBRE (prévia curta — texto completo está em sobre.html) -->
 <section id="sobre" class="section about">
   <div class="wrap about-grid">
-    <div>
-      <div class="about-photo">
-    <img src="beatriz.jpeg" alt="Dra. Beatriz Rosa" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">
-        </div>
-      <ul class="formacao">
-        <li>Graduação em Medicina — Pontifícia Universidade Católica de São Paulo (PUC-SP)</li>
-        <li>Residência em Pediatria — Pontifícia Universidade Católica de São Paulo (PUC-SP)</li>
-        <li>Residência em Reumatologia Pediátrica — Universidade Federal de São Paulo / Escola Paulista de Medicina (UNIFESP-EPM)</li>
-        <li>Mestrado em andamento — Universidade Federal de São Paulo / Escola Paulista de Medicina (UNIFESP-EPM)</li>
-      </ul>
+    <div class="about-photo">
+      <img src="beatriz-2.jpeg" alt="Dra. Beatriz Rosa">
     </div>
     <div>
       <span class="eyebrow">Sobre a Dra. Beatriz</span>
       <h2 style="margin-top:10px;">Um cuidado que une ciência, escuta e confiança.</h2>
       <div class="about-bio">
         <p>Sou médica especialista em Reumatologia Pediátrica e dedico minha atuação ao cuidado de crianças e adolescentes com doenças reumáticas, sempre buscando oferecer um atendimento individualizado, baseado em evidências científicas e, acima de tudo, humanizado.</p>
-        <p>A Reumatologia Pediátrica envolve condições que, muitas vezes, são complexas e exigem acompanhamento contínuo. Por isso, acredito que um tratamento de qualidade vai além da prescrição de medicamentos. É fundamental compreender a realidade de cada criança, esclarecer dúvidas, acolher as preocupações da família e tomar decisões de forma compartilhada.</p>
-        <p>Busco manter uma atualização científica constante para oferecer tratamentos baseados nas melhores evidências disponíveis, sempre respeitando as necessidades, os objetivos e as particularidades de cada paciente.</p>
-        <p>Atendo crianças e adolescentes com diversas doenças reumáticas, incluindo artrite idiopática juvenil, lúpus eritematoso sistêmico juvenil, dermatomiosite juvenil, vasculites, síndromes autoinflamatórias, esclerodermia, uveítes associadas às doenças reumáticas e outras condições musculoesqueléticas e autoimunes da infância e adolescência.</p>
-        <p>Cuidar da saúde de uma criança é também cuidar da tranquilidade de toda a família. Meu objetivo é que cada família encontre não apenas um tratamento, mas também segurança, acolhimento e confiança durante todo o acompanhamento.</p>
+      </div>
+      <div class="btn-row" style="margin-top:24px; max-width:320px;">
+        <a href="sobre.html" class="btn btn-ghost">Conhecer a trajetória completa →</a>
       </div>
     </div>
   </div>
@@ -466,19 +133,95 @@
     <div class="areas-head">
       <span class="eyebrow">Áreas de atuação</span>
       <h2 style="margin-top:10px;">Condições acompanhadas pela Dra. Beatriz</h2>
-      <p>Um resumo direto de cada condição. Toque em qualquer item para entender melhor.</p>
+      <p>Toque em qualquer condição para entender melhor do que se trata.</p>
     </div>
-    <div class="accordion" id="accordion"></div>
+    <div class="areas-grid">
+      <a class="area-card" href="doencas/artrite-idiopatica-juvenil.html">
+        <h3>Artrite Idiopática Juvenil (AIJ)</h3>
+        <p>Doença autoimune que causa dor, inchaço e dificuldade de movimentar as articulações em crianças e adolescentes.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/lupus-eritematoso-sistemico-juvenil.html">
+        <h3>Lúpus Eritematoso Sistêmico Juvenil (LESJ)</h3>
+        <p>Doença autoimune sistêmica, mais comum em meninas adolescentes, que pode afetar qualquer órgão do corpo.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/dermatomiosite-juvenil.html">
+        <h3>Dermatomiosite Juvenil</h3>
+        <p>Doença autoimune que causa inflamação nos músculos e na pele, com fraqueza muscular característica.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/esclerodermia.html">
+        <h3>Esclerodermia (localizada e sistêmica)</h3>
+        <p>Doença que causa endurecimento da pele e, em alguns casos, de órgãos internos, por excesso de colágeno.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/febre-reumatica.html">
+        <h3>Febre Reumática</h3>
+        <p>Ocorre após uma infecção de garganta mal tratada, podendo afetar articulações, coração, pele e sistema nervoso.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/vasculite-por-iga.html">
+        <h3>Vasculite por IgA</h3>
+        <p>A vasculite mais comum na infância, com manchas roxas na pele, dor articular e, às vezes, sintomas digestivos e renais.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/doenca-de-kawasaki.html">
+        <h3>Doença de Kawasaki</h3>
+        <p>Vasculite que afeta principalmente crianças menores de 5 anos, com risco de complicações cardíacas se não tratada a tempo.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/sim-p.html">
+        <h3>SIM-P (síndrome inflamatória multissistêmica pediátrica)</h3>
+        <p>Inflamação exagerada que pode surgir de 2 a 6 semanas após a criança ter tido COVID-19, mesmo que leve.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/pfapa.html">
+        <h3>PFAPA</h3>
+        <p>Síndrome que causa febre recorrente, mensal, associada a aftas, dor de garganta e íngua no pescoço.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/uveite-doencas-reumaticas.html">
+        <h3>Uveíte associada a doenças reumáticas</h3>
+        <p>Inflamação ocular que pode acompanhar artrite, lúpus e outras doenças reumáticas — muitas vezes sem sintomas.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/hipermobilidade-dor-crescimento-fibromialgia.html">
+        <h3>Hipermobilidade, dor de crescimento e fibromialgia</h3>
+        <p>Condições musculoesqueléticas comuns na infância, que exigem avaliação para diferenciar o que é normal do que precisa de investigação.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+      <a class="area-card" href="doencas/osteoporose-infancia-adolescencia.html">
+        <h3>Osteoporose na infância e adolescência</h3>
+        <p>O enfraquecimento dos ossos também pode ocorrer em crianças, geralmente associado a outras doenças crônicas ou medicamentos.</p>
+        <span class="saiba-mais">Saiba mais →</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- QUANDO PROCURAR -->
 <section class="section-sm alerta">
   <div class="wrap">
-   <span class="eyebrow">Sinais de atenção</span>
+    <span class="eyebrow">Sinais de atenção</span>
     <h2 style="margin-top:10px;">Quando procurar um reumatologista pediátrico?</h2>
     <p class="lead">Se seu filho apresenta um ou mais destes sinais, vale conversar com um especialista.</p>
-    <div class="alerta-grid" id="alertaGrid"></div>
+    <div class="alerta-grid">
+      <div class="alerta-item">Dor nas articulações ("juntas")</div>
+      <div class="alerta-item">Articulações inchadas e quentes</div>
+      <div class="alerta-item">Dor persistente nas costas, braços e pernas</div>
+      <div class="alerta-item">Alterações na postura ou na forma de andar</div>
+      <div class="alerta-item">Fraqueza muscular, quedas frequentes</div>
+      <div class="alerta-item">Cansaço anormal</div>
+      <div class="alerta-item">Manchas roxas ou vermelhas na pele</div>
+      <div class="alerta-item">Febre prolongada sem causa conhecida</div>
+      <div class="alerta-item">Perda de peso ou atraso no crescimento</div>
+      <div class="alerta-item">Alterações persistentes em exames como FAN e Fator Reumatoide</div>
+    </div>
+    <div class="alerta-cta">
+      <p>Algum desses é o seu caso? Agende sua consulta.</p>
+      <a href="#agendamento" class="btn btn-primary">Agendar consulta</a>
+    </div>
   </div>
 </section>
 
@@ -507,7 +250,7 @@
 <!-- CTA BANNER -->
 <section class="cta-banner">
   <div class="wrap cta-inner">
-    <h2>Pronta para cuidar do seu filho com atenção e experiência</h2>
+    <h2>Cuidado especializado para o seu filho, com toda a atenção que ele merece.</h2>
     <a href="#agendamento" class="btn btn-primary">Agendar consulta</a>
   </div>
 </section>
@@ -516,7 +259,6 @@
 <section id="agendamento" class="section agenda">
   <div class="wrap">
     <div class="agenda-head">
-      <div class="agenda-head">
       <span class="eyebrow">Agendamento</span>
       <h2 style="margin-top:10px;">Marque sua consulta</h2>
       <p>Preencha os dados abaixo — o agendamento é finalizado direto pelo WhatsApp com a Dra. Beatriz.</p>
@@ -537,7 +279,7 @@
           <input type="number" id="childAge" name="childAge" min="0" max="21" required>
         </div>
         <button type="submit" class="btn btn-primary wa-btn" id="waSubmit">Agendar pelo WhatsApp</button>
-        <p class="privacy-note">Seus dados são usados apenas para confirmar sua consulta com a Dra. Beatriz e não são compartilhados com terceiros.</p>
+        <p class="privacy-note">Seus dados são usados só para confirmar a consulta.</p>
       </form>
       <div class="agenda-summary" id="agendaSummary"></div>
     </div>
@@ -551,17 +293,50 @@
       <span class="eyebrow">Perguntas frequentes</span>
       <h2 style="margin-top:10px;">Dúvidas comuns de quem procura a Dra. Beatriz</h2>
     </div>
-    <div class="accordion" id="faqAccordion"></div>
+    <div class="accordion">
+  <details class="acc-item">
+    <summary><span>Como funciona o agendamento de consultas?</span><span class="acc-plus" aria-hidden="true"></span></summary>
+    <div class="acc-body"><p>Você preenche seus dados no site; o agendamento é finalizado direto pelo WhatsApp com a Dra. Beatriz.</p></div>
+  </details>
+  <details class="acc-item">
+    <summary><span>O atendimento é presencial ou online?</span><span class="acc-plus" aria-hidden="true"></span></summary>
+    <div class="acc-body"><p>Os dois formatos estão disponíveis. O presencial é realizado em Vila Clementino, São Paulo — SP; o online é feito por videochamada.</p></div>
+  </details>
+  <details class="acc-item">
+    <summary><span>Quando devo procurar um reumatologista pediátrico?</span><span class="acc-plus" aria-hidden="true"></span></summary>
+    <div class="acc-body"><p>Quando a criança apresenta dor ou inchaço articular persistente, febre prolongada sem causa definida, manchas na pele, fraqueza muscular ou alterações mantidas em exames como FAN e Fator Reumatoide.</p></div>
+  </details>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- AVALIAÇÕES -->
+<section class="section reviews">
+  <div class="wrap">
+    <div class="areas-head" style="margin-bottom:28px;">
+      <span class="eyebrow">Avaliações</span>
+      <h2 style="margin-top:10px;">O que as famílias dizem</h2>
+    </div>
+    <div class="reviews-placeholder">
+      Em breve, avaliações de pacientes atendidos pela Dra. Beatriz aparecerão aqui.
+    </div>
+  </div>
+</section>
 <footer id="contato">
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <div class="foot-name">Dra. Beatriz Rosa</div>
         <p>Reumatologia Pediátrica<br>Cuidado especializado para crianças e adolescentes com doenças reumáticas.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul class="foot-nav">
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="index.html#areas">Áreas de atuação</a></li>
+          <li><a href="index.html#atendimento">Atendimento</a></li>
+          <li><a href="index.html#agendamento">Agendar consulta</a></li>
+        </ul>
       </div>
       <div>
         <h4>Contato</h4>
@@ -581,133 +356,9 @@
     </div>
   </div>
 </footer>
-
+<a class="wa-float" href="https://wa.me/5511933412191?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20sobre%20uma%20consulta%20com%20a%20Dra.%20Beatriz%20Rosa." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.1 3 3.5 8.6 3.5 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-2.3c1.9 1 4 1.6 6 1.6 6.9 0 12.5-5.6 12.5-12.5S22.9 3 16 3Z" fill="#25D366"/><path d="M22.4 19c-.3.9-1.6 1.6-2.6 1.8-.7.1-1.6.2-4.6-1-3.9-1.6-6.4-5.5-6.6-5.8-.2-.3-1.6-2.1-1.6-4s1-2.8 1.4-3.2c.4-.4.8-.5 1.1-.5h.8c.3 0 .6 0 .9.7.3.8 1.1 2.7 1.2 2.9.1.2.2.4 0 .7-.1.3-.2.4-.4.6-.2.2-.4.5-.6.7-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.1.8-.1.2-.2.9-1.1 1.2-1.4.3-.4.5-.3.9-.2.4.2 2.3 1.1 2.7 1.3.4.2.6.3.7.4.1.2.1.9-.2 1.7Z" fill="#fff"/></svg></a>
+<script src="js/nav.js"></script>
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ---------------- Áreas de atuação (accordion) ---------------- */
-const areas = [
-  {
-    nome: "Artrite Idiopática Juvenil (AIJ)",
-    resumo: "Doença autoimune que causa dor, inchaço e dificuldade de movimentar as articulações em crianças e adolescentes.",
-    texto: "Além das articulações, alguns tipos de AIJ podem afetar os olhos (uveíte, muitas vezes sem sintomas), a pele e órgãos internos. O diagnóstico é clínico e laboratorial, e o tratamento combina medicamentos e fisioterapia. Não tem cura, mas evolui em períodos de atividade e remissão — com tratamento adequado, é possível alcançar a remissão e uma vida normal."
-  },
-  {
-    nome: "Lúpus Eritematoso Sistêmico Juvenil (LESJ)",
-    resumo: "Doença autoimune sistêmica, mais comum em meninas adolescentes, que pode afetar qualquer órgão do corpo.",
-    texto: "Sintomas comuns incluem febre prolongada, cansaço, manchas na pele (como o clássico rash em asa de borboleta), dor articular e alterações em exames de sangue e urina. O tratamento reduz a atividade da doença e previne danos aos órgãos. Diagnóstico precoce e adesão ao tratamento são fundamentais para o bom acompanhamento."
-  },
-  {
-    nome: "Dermatomiosite Juvenil",
-    resumo: "Doença autoimune que causa inflamação nos músculos e na pele, com fraqueza muscular característica.",
-    texto: "A criança pode ter dificuldade para subir escadas, pentear o cabelo ou levantar da cadeira, além de manchas na pele nas pálpebras e articulações. O tratamento envolve medicação para controlar a inflamação e fisioterapia para manter força e mobilidade, com acompanhamento rigoroso pelo especialista."
-  },
-  {
-    nome: "Esclerodermia (localizada e sistêmica)",
-    resumo: "Doença que causa endurecimento da pele e, em alguns casos, de órgãos internos, por excesso de colágeno.",
-    texto: "Na forma localizada, o acometimento fica restrito à pele. Na forma sistêmica, pode envolver pulmões, coração, rins e trato digestivo. O diagnóstico é clínico, com apoio de exames complementares, e o tratamento busca controlar a inflamação e preservar a função dos tecidos afetados."
-  },
-  {
-    nome: "Febre Reumática",
-    resumo: "Ocorre após uma infecção de garganta mal tratada, podendo afetar articulações, coração, pele e sistema nervoso.",
-    texto: "A maior preocupação é o comprometimento das válvulas cardíacas. O tratamento é feito em etapas — antibiótico para a infecção, medicação para os sintomas e uso contínuo de antibiótico preventivo, muitas vezes por anos, para evitar novas crises e lesões ao coração."
-  },
-  {
-    nome: "Vasculite por IgA",
-    resumo: "A vasculite mais comum na infância, com manchas roxas na pele, dor articular e, às vezes, sintomas digestivos e renais.",
-    texto: "Na maioria dos casos evolui bem, mas exige atenção ao trato gastrointestinal na fase inicial e aos rins, que podem ser afetados meses depois. O acompanhamento regular é essencial mesmo após a melhora dos sintomas de pele."
-  },
-  {
-    nome: "Doença de Kawasaki",
-    resumo: "Vasculite que afeta principalmente crianças menores de 5 anos, com risco de complicações cardíacas se não tratada a tempo.",
-    texto: "Febre alta persistente, olhos vermelhos, lábios rachados e inchaço de mãos e pés são sinais típicos. O diagnóstico e tratamento precoces — com imunoglobulina e acompanhamento cardíaco — reduzem muito o risco de sequelas no coração."
-  },
-  {
-    nome: "SIM-P (síndrome inflamatória pós-COVID-19)",
-    resumo: "Inflamação exagerada que pode surgir de 2 a 6 semanas após a criança ter tido COVID-19, mesmo que leve.",
-    texto: "Envolve febre prolongada e o comprometimento de dois ou mais órgãos. Pode ser grave quando afeta o coração, exigindo internação e suporte intensivo. A vacinação contra a COVID-19 ajuda a reduzir o risco de desenvolver a síndrome."
-  },
-  {
-    nome: "PFAPA",
-    resumo: "Síndrome que causa febre recorrente, mensal, associada a aftas, dor de garganta e íngua no pescoço.",
-    texto: "Entre as crises, a criança está saudável. O diagnóstico é clínico e por exclusão de outras causas. As crises tendem a diminuir com o crescimento, e o tratamento é individualizado conforme a frequência e intensidade dos episódios."
-  },
-  {
-    nome: "Uveíte associada a doenças reumáticas",
-    resumo: "Inflamação ocular que pode acompanhar artrite, lúpus e outras doenças reumáticas — muitas vezes sem sintomas.",
-    texto: "Por isso o acompanhamento oftalmológico regular é essencial em crianças com doenças reumatológicas, mesmo sem queixas visuais. O diagnóstico exige exames específicos, e o tratamento combina controle da inflamação ocular com o controle da doença de base."
-  },
-  {
-    nome: "Hipermobilidade, dor de crescimento e fibromialgia",
-    resumo: "Condições musculoesqueléticas comuns na infância, que exigem avaliação para diferenciar do que é normal do que precisa de investigação.",
-    texto: "A hipermobilidade e a chamada 'dor de crescimento' costumam ser benignas, mas alguns sinais — dor persistente, inchaço, claudicação — merecem investigação. Já a fibromialgia, mais comum em adolescentes, envolve dor crônica generalizada e costuma responder bem a um manejo multidisciplinar."
-  },
-  {
-    nome: "Osteoporose na infância e adolescência",
-    resumo: "O enfraquecimento dos ossos também pode ocorrer em crianças, geralmente associado a outras doenças crônicas ou medicamentos.",
-    texto: "É mais comum em crianças com doenças reumatológicas, pulmonares, renais ou em uso prolongado de corticoide. O diagnóstico é feito por densitometria óssea, e o tratamento combina alimentação, suplementação e, quando necessário, medicação específica."
-  }
-];
-
-const accordion = document.getElementById('accordion');
-areas.forEach((a) => {
-  const details = document.createElement('details');
-  details.className = 'acc-item';
-  details.innerHTML = `
-    <summary><span>${a.nome}</span><span class="acc-plus" aria-hidden="true"></span></summary>
-    <div class="acc-body">
-      <p>${a.resumo}</p>
-      <p>${a.texto}</p>
-    </div>`;
-  accordion.appendChild(details);
-});
-
-/* ---------------- FAQ ---------------- */
-const faq = [
-  {
-    pergunta: "Como funciona o agendamento de consultas?",
-    resposta: "Você escolhe o sábado e o horário disponível diretamente no site; a confirmação é feita pelo WhatsApp, com a mensagem já pronta."
-  },
-  {
-    pergunta: "O atendimento é presencial ou online?",
-    resposta: "Os dois formatos estão disponíveis. O presencial é realizado em Vila Clementino, São Paulo — SP; o online é feito por videochamada."
-  },
-  {
-    pergunta: "Quando devo procurar um reumatologista pediátrico?",
-    resposta: "Quando a criança apresenta dor ou inchaço articular persistente, febre prolongada sem causa definida, manchas na pele, fraqueza muscular ou alterações mantidas em exames como FAN e Fator Reumatoide."
-  }
-];
-const faqAccordion = document.getElementById('faqAccordion');
-faq.forEach((f) => {
-  const details = document.createElement('details');
-  details.className = 'acc-item';
-  details.innerHTML = `
-    <summary><span>${f.pergunta}</span><span class="acc-plus" aria-hidden="true"></span></summary>
-    <div class="acc-body"><p>${f.resposta}</p></div>`;
-  faqAccordion.appendChild(details);
-});
-
-/* ---------------- Sinais de atenção ---------------- */
-const sinais = [
-  "Dor nas articulações (\"juntas\")",
-  "Articulações inchadas e quentes",
-  "Dor persistente nas costas, braços e pernas",
-  "Alterações na postura ou na forma de andar",
-  "Fraqueza muscular, quedas frequentes",
-  "Cansaço anormal",
-  "Manchas roxas ou vermelhas na pele",
-  "Febre prolongada sem causa conhecida",
-  "Perda de peso ou atraso no crescimento",
-  "Alterações persistentes em exames como FAN e Fator Reumatoide"
-];
-const alertaGrid = document.getElementById('alertaGrid');
-sinais.forEach(s => {
-  const div = document.createElement('div');
-  div.className = 'alerta-item';
-  div.textContent = s;
-  alertaGrid.appendChild(div);
-});
-
 /* ---------------- Agendamento (formulário simples → WhatsApp) ---------------- */
 const WHATSAPP_NUMBER = "5511933412191";
 
@@ -725,9 +376,6 @@ bookingForm.addEventListener('submit', async (e) => {
   waSubmit.disabled = true;
   waSubmit.textContent = 'Enviando...';
 
-  // Salva o pedido de agendamento no banco (para a Dra. Beatriz ver no painel).
-  // Se der algum problema de conexão, o agendamento ainda assim segue pelo
-  // WhatsApp normalmente — o registro no painel é um extra, não um bloqueio.
   try {
     await fetch('/api/appointments', {
       method: 'POST',
@@ -756,6 +404,5 @@ bookingForm.addEventListener('submit', async (e) => {
   window.open(url, '_blank', 'noopener');
 });
 </script>
-
 </body>
 </html>

@@ -160,6 +160,7 @@ header.nav{
 .about{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
 .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
 @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+.about-grid-text-only{grid-template-columns:1fr; max-width:640px; margin-left:auto; margin-right:auto;}
 .about-photo{
   aspect-ratio:4/5; border-radius:var(--radius); background:var(--tint);
   overflow:hidden; border:1px solid var(--line);

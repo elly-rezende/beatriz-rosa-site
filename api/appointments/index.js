@@ -26,10 +26,10 @@ async function handleList(req, res) {
 
   try {
     const rows = await sql`
-      select id, responsible_name, child_name, child_age, status, created_at
-      from appointments
-      order by created_at desc
-    `;
+  select id, responsible_name, child_name, child_age, reason, status, created_at
+  from appointments
+  order by created_at desc
+`;
     return res.status(200).json({ appointments: rows });
   } catch (err) {
     console.error('Erro ao listar agendamentos:', err);
@@ -47,7 +47,7 @@ async function handleCreate(req, res) {
   }
 
   // 2) Validação dos dados recebidos — nunca confiar no que vem do navegador.
-  const { responsible_name, child_name, child_age, phone } = req.body || {};
+  const { responsible_name, child_name, child_age, phone, reason } = req.body || {};
 
   const cleanName = (responsible_name || '').trim();
   if (!cleanName || cleanName.length > MAX_NAME_LENGTH) {
@@ -61,12 +61,14 @@ async function handleCreate(req, res) {
 
   const cleanChildAge = child_age ? String(child_age).trim().slice(0, 10) : null;
   const cleanPhone = phone ? String(phone).trim().slice(0, 30) : null;
+  const cleanReason = reason ? String(reason).trim().slice(0, 300) : null;
 
   try {
     const inserted = await sql`
-      insert into appointments (responsible_name, child_name, child_age, phone)
-      values (${cleanName}, ${cleanChildName}, ${cleanChildAge}, ${cleanPhone})
-      returning id, status
+  insert into appointments (responsible_name, child_name, child_age, phone, reason)
+  values (${cleanName}, ${cleanChildName}, ${cleanChildAge}, ${cleanPhone}, ${cleanReason})
+  returning id, status
+`;
     `;
     return res.status(201).json({ appointment: inserted[0] });
   } catch (err) {

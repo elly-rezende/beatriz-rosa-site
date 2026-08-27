@@ -110,7 +110,10 @@
 
 <!-- SOBRE (prévia curta — texto completo está em sobre.html) -->
 <section id="sobre" class="section about">
-<div class="wrap about-grid about-grid-text-only">
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <img src="beatriz-2.jpeg" alt="Dra. Beatriz Rosa">
+    </div>
     <div>
       <span class="eyebrow">Sobre a Dra. Beatriz</span>
       <h2 style="margin-top:10px;">Um cuidado que une ciência, escuta e confiança.</h2>
@@ -155,7 +158,7 @@
       </a>
       <a class="area-card" href="doencas/febre-reumatica.html">
         <h3>Febre Reumática</h3>
-        <p>Ocorre após uma infecção de garganta mal tratada, podendo afetar articulações, coração, pele e sistema nervoso.</p>
+        <p>Ocorre após uma infecção de garganta, podendo afetar articulações, coração, pele e sistema nervoso.</p>
         <span class="saiba-mais">Saiba mais →</span>
       </a>
       <a class="area-card" href="doencas/vasculite-por-iga.html">
@@ -275,6 +278,10 @@
           <label for="childAge">Idade da criança/adolescente</label>
           <input type="number" id="childAge" name="childAge" min="0" max="21" required>
         </div>
+        <div class="form-field">
+          <label for="reason">Descrição breve do motivo da consulta (opcional)</label>
+          <textarea id="reason" name="reason" rows="3" maxlength="300"></textarea>
+        </div>
         <button type="submit" class="btn btn-primary wa-btn" id="waSubmit">Agendar pelo WhatsApp</button>
         <p class="privacy-note">Seus dados são usados só para confirmar a consulta.</p>
       </form>
@@ -298,10 +305,6 @@
   <details class="acc-item">
     <summary><span>O atendimento é presencial ou online?</span><span class="acc-plus" aria-hidden="true"></span></summary>
     <div class="acc-body"><p>Os dois formatos estão disponíveis. O presencial é realizado em Vila Clementino, São Paulo — SP; o online é feito por videochamada.</p></div>
-  </details>
-  <details class="acc-item">
-    <summary><span>Quando devo procurar um reumatologista pediátrico?</span><span class="acc-plus" aria-hidden="true"></span></summary>
-    <div class="acc-body"><p>Quando a criança apresenta dor ou inchaço articular persistente, febre prolongada sem causa definida, manchas na pele, fraqueza muscular ou alterações mantidas em exames como FAN e Fator Reumatoide.</p></div>
   </details>
     </div>
   </div>
@@ -369,6 +372,7 @@ bookingForm.addEventListener('submit', async (e) => {
   const respName = document.getElementById('respName').value.trim();
   const childName = document.getElementById('childName').value.trim();
   const childAge = document.getElementById('childAge').value.trim();
+  const reason = document.getElementById('reason').value.trim();
 
   waSubmit.disabled = true;
   waSubmit.textContent = 'Enviando...';
@@ -380,7 +384,8 @@ bookingForm.addEventListener('submit', async (e) => {
       body: JSON.stringify({
         responsible_name: respName,
         child_name: childName,
-        child_age: childAge
+        child_age: childAge,
+        reason: reason
       })
     });
   } catch (err) {
@@ -390,6 +395,7 @@ bookingForm.addEventListener('submit', async (e) => {
   let msg = `Olá! Gostaria de agendar uma consulta com a Dra. Beatriz Rosa.`;
   msg += ` Nome do responsável: ${respName}.`;
   msg += ` Nome da criança/adolescente: ${childName}, ${childAge} anos.`;
+  if (reason) { msg += ` Motivo da consulta: ${reason}.`; }
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 

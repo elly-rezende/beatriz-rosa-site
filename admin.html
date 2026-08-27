@@ -238,6 +238,7 @@ function renderTable(){
       <td>${escapeHtml(a.responsible_name)}</td>
       <td>${escapeHtml(a.child_name)}</td>
       <td>${a.child_age ? escapeHtml(a.child_age) : '—'}</td>
+      <td>${a.reason ? escapeHtml(a.reason) : '—'}</td>
       <td><span class="badge badge-${a.status}">${a.status}</span></td>
       <td>
         <div class="row-actions">
@@ -251,7 +252,7 @@ function renderTable(){
   tableWrap.innerHTML = `
     <table>
       <thead>
-        <tr><th>Recebido em</th><th>Responsável</th><th>Criança</th><th>Idade</th><th>Status</th><th>Ações</th></tr>
+       <tr><th>Recebido em</th><th>Responsável</th><th>Criança</th><th>Idade</th><th>Motivo</th><th>Status</th><th>Ações</th></tr>
       </thead>
       <tbody>${rows}</tbody>
     </table>

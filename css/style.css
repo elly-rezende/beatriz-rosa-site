@@ -160,7 +160,6 @@ header.nav{
 .about{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
 .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
 @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
-.about-grid-text-only{grid-template-columns:1fr; max-width:640px; margin-left:auto; margin-right:auto;}
 .about-photo{
   aspect-ratio:4/5; border-radius:var(--radius); background:var(--tint);
   overflow:hidden; border:1px solid var(--line);
@@ -253,11 +252,12 @@ details[open] .acc-plus::after{transform:scaleY(0);}
 @media (max-width:760px){ .agenda-box{padding:22px;} }
 .form-field{margin-bottom:14px;}
 .form-field label{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
-.form-field input{
+.form-field input, .form-field textarea{
   width:100%; padding:11px 13px; border-radius:8px; border:1px solid var(--line);
   background:var(--white); font-family:var(--sans); font-size:14.5px; color:var(--ink);
 }
-.form-field input:focus{outline:2px solid var(--primary); outline-offset:1px;}
+.form-field textarea{resize:vertical; min-height:70px;}
+.form-field input:focus, .form-field textarea:focus{outline:2px solid var(--primary); outline-offset:1px;}
 .wa-btn{width:100%; justify-content:center; margin-top:6px;}
 .wa-btn:disabled{opacity:0.5; cursor:not-allowed; transform:none;}
 .privacy-note{

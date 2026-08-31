@@ -108,25 +108,6 @@
   </div>
 </section>
 
-<!-- SOBRE (prévia curta — texto completo está em sobre.html) -->
-<section id="sobre" class="section about">
-  <div class="wrap about-grid">
-    <div class="about-photo">
-      <img src="beatriz-2.jpeg" alt="Dra. Beatriz Rosa">
-    </div>
-    <div>
-      <span class="eyebrow">Sobre a Dra. Beatriz</span>
-      <h2 style="margin-top:10px;">Um cuidado que une ciência, escuta e confiança.</h2>
-      <div class="about-bio">
-        <p>Sou médica especialista em Reumatologia Pediátrica e dedico minha atuação ao cuidado de crianças e adolescentes com doenças reumáticas, sempre buscando oferecer um atendimento individualizado, baseado em evidências científicas e, acima de tudo, humanizado.</p>
-      </div>
-      <div class="btn-row" style="margin-top:24px; max-width:320px;">
-        <a href="sobre.html" class="btn btn-ghost">Conhecer a trajetória completa →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- AREAS DE ATUAÇÃO -->
 <section id="areas" class="section">
   <div class="wrap">
@@ -310,15 +291,63 @@
   </div>
 </section>
 
-<!-- AVALIAÇÕES -->
+<!-- AVALIAÇÕES (carrossel deslizável) -->
 <section class="section reviews">
   <div class="wrap">
     <div class="areas-head" style="margin-bottom:28px;">
       <span class="eyebrow">Avaliações</span>
       <h2 style="margin-top:10px;">O que as famílias dizem</h2>
     </div>
-    <div class="reviews-placeholder">
-      Em breve, avaliações de pacientes atendidos pela Dra. Beatriz aparecerão aqui.
+  </div>
+  <div class="reviews-scroll-wrap">
+    <button type="button" class="reviews-arrow reviews-arrow--prev" id="reviewsPrev" aria-label="Avaliação anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="reviews-track" id="reviewsTrack">
+      <div class="review-card">
+        <p class="review-quote">&ldquo;A Bia acompanhou meu caso desde o começo, investigando e sempre procurando saber algo a mais para descobrir qual era meu diagnóstico. Além de ser super atenciosa, respeitosa e muitíssimo carinhosa, foi quem esteve desde o começo do tratamento e deu todo o apoio e conforto para mim e minha família quando o resultado do diagnóstico saiu. Ela tem um lugar muito especial no nosso coração por fazer parte desse momento e se comprometer de sempre ajudar quando preciso.&rdquo;</p>
+        <p class="review-author">— Gabrielly Lima Klimke</p>
+      </div>
+      <div class="review-card">
+        <p class="review-quote">&ldquo;Minha experiência com a Dra. Bia foi muito especial. Desde o primeiro atendimento, me senti muito acolhida e confortável. Ela sempre me tratou com muito carinho, atenção e paciência, e isso fez toda a diferença para mim. É muito bom ser atendida por alguém que realmente escuta, se importa e faz a gente se sentir segura. Sou muito grata por todo cuidado e carinho que ela teve comigo durante esse período. Com certeza, uma profissional que vou levar com muito carinho.&rdquo;</p>
+        <p class="review-author">— Giulia</p>
+      </div>
+      <div class="review-card">
+        <p class="review-quote">&ldquo;Suas consultas e atendimento sempre foram excelentes. Sempre muito atenciosa e detalhista, trata o Miguel com amor e empatia, deixando ele e a mim muito confortáveis em todo momento. Demonstra carinho, preocupação e cuidado com meu filho, o que me passa uma segurança muito grande. Entendo que as consultas vão além de dados médicos — se tornou uma pessoa de confiança onde sei que posso contar sempre que necessário para os cuidados com meu filho.&rdquo;</p>
+        <p class="review-author">— Mãe do Miguel</p>
+      </div>
+      <div class="review-card">
+        <p class="review-quote">&ldquo;Conhecemos a Dra. em um dos momentos mais delicados de nossas vidas, quando nossa pequena estava internada. Desde o primeiro contato, nos acolheu com uma atenção e um carinho que jamais esqueceremos. Sempre muito humana, atenciosa e dona de uma empatia ímpar, esteve ao nosso lado e nos ajudou prontamente. Só temos gratidão por todo o cuidado, disponibilidade e acolhimento que recebemos. É uma médica maravilhosa e uma profissional excepcional, que exerce a medicina com amor e humanidade.&rdquo;</p>
+        <p class="review-author">— Família de uma paciente</p>
+      </div>
+      <div class="review-card">
+        <p class="review-quote">&ldquo;Desde a internação no hospital, em um momento tão delicado e cheio de incertezas, a Dra. Beatriz esteve presente, acompanhando, orientando e nos transmitindo muita segurança. Depois da alta, esse cuidado continuou nas consultas, sempre com muita atenção, conhecimento e, principalmente, humanidade. Como mãe, posso dizer o quanto fez diferença encontrar uma profissional em quem eu pudesse confiar de verdade — ela não cuidou apenas da Júlia, mas também acolheu a mim e à nossa família num momento muito difícil.&rdquo;</p>
+        <p class="review-author">— Mãe da Júlia</p>
+      </div>
+      <div class="review-card">
+        <p class="review-quote">&ldquo;Passei com ela por um bom tempo e, com certeza, foi uma das melhores profissionais que eu poderia ter tido a oportunidade de ser atendida — extremamente simpática, atenciosa, e fazia com que todo o tratamento se tornasse "mais leve". Me motivava demais saber que passaria com ela. Além de doutora, também foi uma grande amiga.&rdquo;</p>
+        <p class="review-author">— Laura</p>
+      </div>
+    </div>
+    <button type="button" class="reviews-arrow reviews-arrow--next" id="reviewsNext" aria-label="Próxima avaliação">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+  <div class="reviews-dots" id="reviewsDots"></div>
+</section>
+
+<!-- SOBRE (prévia curta — texto completo está em sobre.html) -->
+<section id="sobre" class="section about">
+  <div class="wrap about-grid about-grid-text-only">
+    <div>
+      <span class="eyebrow">Sobre a Dra. Beatriz</span>
+      <h2 style="margin-top:10px;">Um cuidado que une ciência, escuta e confiança.</h2>
+      <div class="about-bio">
+        <p>Sou médica especialista em Reumatologia Pediátrica e dedico minha atuação ao cuidado de crianças e adolescentes com doenças reumáticas, sempre buscando oferecer um atendimento individualizado, baseado em evidências científicas e, acima de tudo, humanizado.</p>
+      </div>
+      <div class="btn-row" style="margin-top:24px; max-width:320px;">
+        <a href="sobre.html" class="btn btn-ghost">Conhecer a trajetória completa →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -406,6 +435,49 @@ bookingForm.addEventListener('submit', async (e) => {
 
   window.open(url, '_blank', 'noopener');
 });
+
+/* ---------------- Carrossel de avaliações ---------------- */
+const reviewsTrack = document.getElementById('reviewsTrack');
+if (reviewsTrack) {
+  const reviewCards = Array.from(reviewsTrack.children);
+  const dotsWrap = document.getElementById('reviewsDots');
+  const prevBtn = document.getElementById('reviewsPrev');
+  const nextBtn = document.getElementById('reviewsNext');
+
+  // cria um dot pra cada avaliação
+  reviewCards.forEach((card, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Ir para avaliação ${i + 1}`);
+    dot.addEventListener('click', () => {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+    dotsWrap.appendChild(dot);
+  });
+  const reviewDots = Array.from(dotsWrap.children);
+
+  // setas avançam/voltam um card por vez
+  function scrollByCard(direction) {
+    const cardWidth = reviewCards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(reviewsTrack).gap) || 20;
+    reviewsTrack.scrollBy({ left: (cardWidth + gap) * direction, behavior: 'smooth' });
+  }
+  prevBtn.addEventListener('click', () => scrollByCard(-1));
+  nextBtn.addEventListener('click', () => scrollByCard(1));
+
+  // destaca o dot do card visível enquanto o usuário arrasta
+  const reviewsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const idx = reviewCards.indexOf(entry.target);
+        reviewDots.forEach((d) => d.classList.remove('active'));
+        if (reviewDots[idx]) reviewDots[idx].classList.add('active');
+      }
+    });
+  }, { root: reviewsTrack, threshold: 0.6 });
+  reviewCards.forEach((card) => reviewsObserver.observe(card));
+}
 </script>
 </body>
 </html>

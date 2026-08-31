@@ -272,12 +272,91 @@ details[open] .acc-plus::after{transform:scaleY(0);}
 /* FAQ */
 .faq{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
 
-/* AVALIAÇÕES */
-.reviews{background:var(--bg);}
-.reviews-placeholder{
-  border:1px dashed var(--line); border-radius:var(--radius); padding:40px 28px;
-  text-align:center; color:var(--ink-soft); font-size:15px; max-width:520px; margin:0 auto;
+/* AVALIAÇÕES — carrossel horizontal deslizável */
+.reviews{background:var(--bg); overflow:hidden;}
+
+.reviews-scroll-wrap{
+  position:relative;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 12px;
 }
+
+.reviews-track{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  padding:4px 4px 12px;
+  margin:0 -4px;
+  /* esconde a barra de rolagem, mantendo o arrasto funcional */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.reviews-track::-webkit-scrollbar{ display:none; }
+
+.review-card{
+  flex:0 0 85%;
+  scroll-snap-align:center;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 26px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  box-shadow:0 6px 20px rgba(36,65,58,0.06);
+}
+.review-quote{
+  font-size:15px; line-height:1.75; color:var(--ink-soft); font-style:italic;
+}
+.review-author{
+  font-family:var(--serif); font-weight:600; font-size:15px; color:var(--primary-dark); margin-top:auto;
+}
+
+@media (min-width:640px){
+  .review-card{ flex-basis:60%; }
+}
+@media (min-width:980px){
+  .reviews-scroll-wrap{ padding:0 64px; }
+  .review-card{ flex-basis:36%; }
+}
+
+/* setas prev/next */
+.reviews-arrow{
+  position:absolute; top:42%; transform:translateY(-50%);
+  width:42px; height:42px; border-radius:50%;
+  background:var(--white); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:5;
+  box-shadow:0 4px 14px rgba(36,65,58,0.14);
+  transition:background .15s, box-shadow .15s;
+}
+.reviews-arrow:hover{ background:var(--tint); }
+.reviews-arrow svg{ width:18px; height:18px; stroke:var(--primary-dark); }
+.reviews-arrow--prev{ left:-6px; }
+.reviews-arrow--next{ right:-6px; }
+@media (min-width:980px){
+  .reviews-arrow--prev{ left:8px; }
+  .reviews-arrow--next{ right:8px; }
+}
+@media (max-width:480px){
+  /* em telas bem estreitas, as setas ficam sobre o card em vez de cortadas */
+  .reviews-arrow{ width:36px; height:36px; }
+}
+
+/* dots */
+.reviews-dots{
+  display:flex; justify-content:center; align-items:center; gap:8px; margin-top:16px;
+}
+.reviews-dot{
+  width:8px; height:8px; padding:0; border:0; border-radius:50%;
+  background:var(--line); cursor:pointer;
+  transition:background .15s, transform .15s;
+}
+.reviews-dot.active{ background:var(--accent); transform:scale(1.25); }
 
 /* FOOTER / CONTATO — agora claro, texto único de cor, sem contraste com fundo escuro */
 footer{background:var(--tint); border-top:1px solid var(--line); color:var(--ink-soft); padding:56px 0 28px;}
